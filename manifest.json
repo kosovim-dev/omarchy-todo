@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "kosovim-dev.todo",
+  "name": "Todo",
+  "version": "1.0.0",
+  "author": "kosovim-dev",
+  "description": "A compact task tracker bar widget with a popup panel",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "BarWidget.qml"
+  },
+  "barWidget": {
+    "displayName": "Todo",
+    "description": "A compact task tracker bar widget with a popup panel",
+    "category": "Productivity",
+    "allowMultiple": false
+  }
+}
