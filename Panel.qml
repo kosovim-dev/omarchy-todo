@@ -305,9 +305,9 @@ Panel {
             id: listView
             visible: !root.hasError && root.viewTasks.length > 0
             Layout.fillWidth: true
-            Layout.preferredHeight: Math.min(root.viewTasks.length, 6) * Style.spacing.popupRowHeight
+            Layout.preferredHeight: Math.min(root.viewTasks.length, 12) * Style.spacing.popupRowHeight
             clip: true
-            interactive: root.viewTasks.length > 6
+            interactive: root.viewTasks.length > 12
             boundsBehavior: Flickable.StopAtBounds
             spacing: 0
             model: root.viewTasks
