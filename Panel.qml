@@ -348,14 +348,14 @@ Panel {
 
                 // Priority: accent when set, dimmed outline otherwise.
                 PanelActionButton {
-                  iconText: modelData.priority === true ? "\u2605" : "\u2606"
+                  iconText: modelData.priority === true ? "🟊" : "\u2606"
                   tooltipText: modelData.priority === true ? "Remove priority" : "Mark priority"
                   foreground: modelData.priority === true
                     ? Color.accent
                     : Qt.darker(root.contentForeground, 1.5)
                   hoverColor: Color.accent
                   fontFamily: root.contentFontFamily
-                  fontSize: Style.font.bodySmall
+                  fontSize: Style.font.bodyLarge
                   onClicked: { root.cancelEdit(); if (store) store.togglePriority(modelData.id) }
                 }
 
