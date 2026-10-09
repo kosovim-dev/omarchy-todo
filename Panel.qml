@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import qs.Commons
+import qs.Commons as Commons
 import qs.Ui
 
 // Todo popup (kosovim-dev.todo): a compact task list anchored to the bar.
@@ -25,7 +26,7 @@ Panel {
   readonly property bool hasError: store ? store.fileError !== "" : false
   readonly property string errorText: store ? store.fileError : ""
   readonly property int storeMaxShown: store ? store.maxShown : 12
-  readonly property color contentForeground: Color.popups.text
+  readonly property color contentForeground: Commons.Color.popups.text
   readonly property string contentFontFamily: Style.font.family
 
   // Cap how many rows the ListView renders at once so the popup stays
@@ -124,8 +125,8 @@ Panel {
   component TodoCheck: Item {
     id: box
     property bool checked: false
-    property color tickColor: Color.accent
-    property color stateColor: Color.accent
+    property color tickColor: Commons.Color.accent
+    property color stateColor: Commons.Color.accent
     readonly property int size: Style.space(16)
 
     signal toggled()
@@ -138,7 +139,7 @@ Panel {
       radius: Style.cornerRadius > 0 ? 3 : 0
       color: box.checked ? Style.selectedFillFor(box.stateColor, box.stateColor) : "transparent"
       border.width: box.checked ? 0 : Style.spacing.hairline
-      border.color: box.checked ? box.stateColor : Style.normalBorderFor(Color.popups.text, box.stateColor)
+      border.color: box.checked ? box.stateColor : Style.normalBorderFor(Commons.Color.popups.text, box.stateColor)
 
       Behavior on color { ColorAnimation { duration: 90 } }
     }
@@ -269,9 +270,9 @@ Panel {
             Layout.fillWidth: true
             Layout.preferredHeight: errorLabel.implicitHeight + Style.spacing.sm * 2
             radius: Style.cornerRadius
-            color: Style.hoverFillFor(Color.urgent, Color.urgent)
+            color: Style.hoverFillFor(Commons.Color.urgent, Commons.Color.urgent)
             border.width: Style.spacing.hairline
-            border.color: Style.normalBorderFor(Color.urgent, Color.urgent)
+            border.color: Style.normalBorderFor(Commons.Color.urgent, Commons.Color.urgent)
 
             Text {
               id: errorLabel
@@ -283,7 +284,7 @@ Panel {
               horizontalAlignment: Text.AlignHCenter
               wrapMode: Text.WordWrap
               text: root.errorText !== "" ? root.errorText : "Todo data unavailable"
-              color: Color.urgent
+              color: Commons.Color.urgent
               font.family: root.contentFontFamily
               font.pixelSize: Style.font.bodySmall
             }
@@ -318,7 +319,7 @@ Panel {
               height: Style.spacing.popupRowHeight
               radius: Style.cornerRadius
               color: mouse.containsMouse
-                ? Style.hoverFillFor(root.contentForeground, Color.accent)
+                ? Style.hoverFillFor(root.contentForeground, Commons.Color.accent)
                 : "transparent"
 
               // Accent bar marking priority rows.
@@ -332,7 +333,7 @@ Panel {
                 anchors.topMargin: Style.spaceReal(3)
                 anchors.bottomMargin: Style.spaceReal(3)
                 radius: Style.cornerRadius > 0 ? Style.space(1) : 0
-                color: Color.accent
+                color: Commons.Color.accent
               }
 
               RowLayout {
@@ -351,9 +352,9 @@ Panel {
                   iconText: modelData.priority === true ? "🟊" : "\u2606"
                   tooltipText: modelData.priority === true ? "Remove priority" : "Mark priority"
                   foreground: modelData.priority === true
-                    ? Color.accent
+                    ? Commons.Color.accent
                     : Qt.darker(root.contentForeground, 1.5)
-                  hoverColor: Color.accent
+                  hoverColor: Commons.Color.accent
                   fontFamily: root.contentFontFamily
                   fontSize: Style.font.bodyLarge
                   onClicked: { root.cancelEdit(); if (store) store.togglePriority(modelData.id) }
@@ -411,7 +412,7 @@ Panel {
                   iconText: "\u2713"
                   tooltipText: "Save"
                   foreground: root.contentForeground
-                  hoverColor: Color.accent
+                  hoverColor: Commons.Color.accent
                   fontFamily: root.contentFontFamily
                   fontSize: Style.font.bodySmall
                   onClicked: root.commitEdit()
@@ -421,7 +422,7 @@ Panel {
                   iconText: "\u2715"
                   tooltipText: root.editingId === modelData.id ? "Cancel" : "Delete"
                   foreground: root.contentForeground
-                  hoverColor: Color.urgent
+                  hoverColor: Commons.Color.urgent
                   fontFamily: root.contentFontFamily
                   fontSize: Style.font.bodySmall
                   onClicked: {
