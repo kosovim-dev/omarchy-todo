@@ -356,7 +356,7 @@ Panel {
                     : Qt.darker(root.contentForeground, 1.5)
                   hoverColor: Commons.Color.accent
                   fontFamily: root.contentFontFamily
-                  fontSize: Style.font.bodyLarge
+                  fontSize: Style.font.icon
                   onClicked: { root.cancelEdit(); if (store) store.togglePriority(modelData.id) }
                 }
 
